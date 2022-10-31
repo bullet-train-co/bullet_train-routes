@@ -88,7 +88,7 @@ end
 
 ## Interoperability
 
-The can use `model` the same way you use `resources`, for example:
+The can use `model` the same way you would `resources`, like so:
 
 ```ruby
 namespace :account do 
