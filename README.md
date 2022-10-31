@@ -6,7 +6,7 @@ As Rails applications grow and developers start reaching for tools like modules 
 
 For example, if you've got a `Project` model and a `Projects::Deliverable` model nested under it, to generate sensible URLs like `/projects/1/deliverables` for your deliverables index and `/projects/deliverables/2` for a deliverable show page, you'll end up with routing code that looks like this:
 
-### ❌ &nbsp; Bad Example
+### ❌ &nbsp; Sad Example
 ```ruby
 collection_actions = [:index, :new, :create]
 
@@ -40,7 +40,7 @@ end
 
 If you're nesting a resource that isn't in the same namespace, you traditionally end up with a route definition that looks like this:
 
-### ❌ &nbsp; Bad Example
+### ❌ &nbsp; Sad Example
 ```ruby
 namespace :projects do
   resources :deliverables
@@ -64,7 +64,7 @@ end
 
 If you're nesting a resource across namespaces, you'll end up with a route definition that looks like this:
 
-### ❌ &nbsp; Bad Example
+### ❌ &nbsp; Sad Example
 ```ruby
 namespace :orders do
   resources :fulfillments
