@@ -23,7 +23,7 @@ end
 
 This is just one example, and not even the most complicated. Previously [we published a comprehensive blog post](https://blog.bullettrain.co/nested-namespaced-rails-routing-examples/) to try and help developers with various examples like this, but there was no helping that the resulting code would be very difficult for the next developer to understand and maintain later.
 
-> In addition to all of this, trying to automatically generate these routes proved to be one of the most complicated and error prone pieces of [Super Scaffolding](https://bullettrain.co/docs/super-scaffolding).
+> In addition to all of this, trying to automatically generate these routes proved to be one of the most complicated and error-prone pieces of [Super Scaffolding](https://bullettrain.co/docs/super-scaffolding).
 
 With Bullet Train Routes, the example above can be simplified like so:
 
