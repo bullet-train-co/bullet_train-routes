@@ -35,6 +35,7 @@ end
 ```
 
 ## Other Examples
+Here are additional before and after comparisons inspired by some of the examples in [our original blog post](https://blog.bullettrain.co/nested-namespaced-rails-routing-examples/).
 
 ### `Projects::Deliverable` and `Objective` Nested Under It
 
