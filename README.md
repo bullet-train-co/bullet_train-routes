@@ -27,7 +27,7 @@ This is just one example, and not even the most complicated. Previously [we publ
 
 With Bullet Train Routes, the example above can be simplified like so:
 
-### ✅ Good Example
+### ✅ &nbsp; Good Example
 ```ruby
 model "Project" do 
   model "Projects::Deliverable"
@@ -40,7 +40,7 @@ end
 
 If you're nesting a resource that isn't in the same namespace, you traditionally end up with a route definition that looks like this:
 
-### ❌ Bad Example
+### ❌ &nbsp; Bad Example
 ```ruby
 namespace :projects do
   resources :deliverables
@@ -53,7 +53,7 @@ end
 
 With Bullet Train Routes, you can simply define this as:
 
-### ✅ Good Example
+### ✅ &nbsp; Good Example
 ```ruby
 model "Projects::Deliverable" do 
   model "Objective"
@@ -64,7 +64,7 @@ end
 
 If you're nesting a resource across namespaces, you'll end up with a route definition that looks like this:
 
-### ❌ Bad Example
+### ❌ &nbsp; Bad Example
 ```ruby
 namespace :orders do
   resources :fulfillments
@@ -79,7 +79,7 @@ end
 
 With Bullet Train Routes, you can simply define this as:
 
-### ✅ Good Example
+### ✅ &nbsp; Good Example
 ```ruby
 model "Orders::Fulfillment" do 
   model "Shipping::Package"
