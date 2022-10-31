@@ -6,6 +6,7 @@ As Rails applications grow and developers start reaching for tools like modules 
 
 For example, if you've got a `Project` model and a `Projects::Deliverable` model nested under it, we want the following URLs:
 
+ - `/projects/1` for a project show page.
  - `/projects/1/deliverables` for the deliverables index page.
  - `/projects/deliverables/2` for a deliverable show page.
 
