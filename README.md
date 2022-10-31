@@ -4,7 +4,12 @@ Bullet Train Routes provides a vastly simplified method for defining shallow, ne
 ## Why?
 As Rails applications grow and developers start reaching for tools like modules and namespaces to organize their domain model, it can be incredibly challenging to generate sensible routes and URLs using the traditional Rails routing DSL. 
 
-For example, if you've got a `Project` model and a `Projects::Deliverable` model nested under it, to generate sensible URLs like `/projects/1/deliverables` for your deliverables index and `/projects/deliverables/2` for a deliverable show page, you'll end up with routing code that looks like this:
+For example, if you've got a `Project` model and a `Projects::Deliverable` model nested under it, we want the following URLs:
+
+ - `/projects/1/deliverables` for the deliverables index page.
+ - `/projects/deliverables/2` for a deliverable show page.
+
+To produce these routes with the standard Rails routing DSL, you'll end up with the following:
 
 ### ❌ &nbsp; Hard Example
 ```ruby
