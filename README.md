@@ -6,7 +6,7 @@ As Rails applications grow and developers start reaching for tools like modules 
 
 For example, if you've got a `Project` model and a `Projects::Deliverable` model nested under it, to generate sensible URLs like `/projects/1/deliverables` for your deliverables index and `/projects/deliverables/2` for a deliverable show page, you'll end up with routing code that looks like this:
 
-### ❌ &nbsp; Sad Example
+### ❌ &nbsp; Hard Example
 ```ruby
 collection_actions = [:index, :new, :create]
 
@@ -27,7 +27,7 @@ This is just one example, and not even the most complicated. Previously [we publ
 
 With Bullet Train Routes, the example above can be simplified like so:
 
-### ✅ &nbsp; Good Example
+### ✅ &nbsp; Easy Example
 ```ruby
 model "Project" do 
   model "Projects::Deliverable"
@@ -40,7 +40,7 @@ end
 
 If you're nesting a resource that isn't in the same namespace, you traditionally end up with a route definition that looks like this:
 
-### ❌ &nbsp; Sad Example
+### ❌ &nbsp; Hard Example
 ```ruby
 namespace :projects do
   resources :deliverables
@@ -53,7 +53,7 @@ end
 
 With Bullet Train Routes, you can simply define this as:
 
-### ✅ &nbsp; Good Example
+### ✅ &nbsp; Easy Example
 ```ruby
 model "Projects::Deliverable" do 
   model "Objective"
@@ -64,7 +64,7 @@ end
 
 If you're nesting a resource across namespaces, you'll end up with a route definition that looks like this:
 
-### ❌ &nbsp; Sad Example
+### ❌ &nbsp; Hard Example
 ```ruby
 namespace :orders do
   resources :fulfillments
@@ -79,7 +79,7 @@ end
 
 With Bullet Train Routes, you can simply define this as:
 
-### ✅ &nbsp; Good Example
+### ✅ &nbsp; Easy Example
 ```ruby
 model "Orders::Fulfillment" do 
   model "Shipping::Package"
