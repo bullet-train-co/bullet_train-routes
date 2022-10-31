@@ -58,6 +58,12 @@ resources :projects_deliverables, path: 'projects/deliverables' do
 end
 ```
 
+This produces the following URLs:
+
+- `/projects/deliverables/1` for a deliverable show view.
+- `/projects/deliverables/1/objectives` for the objectives index view.
+- `/objectives/2` for an objective show view.
+
 With Bullet Train Routes, you can simply define this as:
 
 ### ✅ &nbsp; Easy Example
