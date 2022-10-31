@@ -90,6 +90,12 @@ resources :orders_fulfillments, path: 'orders/fulfillments' do
 end
 ```
 
+This produces the following URLs:
+
+- `/orders/fulfillments/1` for a fulfillment show view.
+- `/orders/fulfillments/1/shipping/packages` for the packages index view.
+- `/shipping/packages/2` for a package show view.
+
 With Bullet Train Routes, you can simply define this as:
 
 ### ✅ &nbsp; Easy Example
