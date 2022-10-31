@@ -107,7 +107,7 @@ end
 
 ## Interoperability
 
-The can use the `model` method the same way you would the `resources` method, like so:
+You can use the `model` method the same way you would the `resources` method, like so:
 
 ```ruby
 namespace :account do 
