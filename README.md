@@ -10,7 +10,7 @@ For example, if you've got a `Project` model and a `Projects::Deliverable` model
  - `/projects/1/deliverables` for the deliverables index page.
  - `/projects/deliverables/2` for a deliverable show page.
 
-To produce these routes with the standard Rails routing DSL, you'll end up with the following:
+To produce these URLs with the standard Rails routing DSL, you'll end up with the following:
 
 ### ❌ &nbsp; Hard Example
 ```ruby
