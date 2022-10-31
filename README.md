@@ -1,5 +1,5 @@
 # Bullet Train Routes
-Bullet Train Routes provides a vastly simplified method for defining shallow, nested resource routes in Rails applications when modules and namespaces are involved. We do this by introducing a `model` method to the Rails routing DSL, which serves as a drop-in replacement for `resources`. You can mix and match usage of `model` with the rest of the Rails routing DSL.
+Bullet Train Routes provides a vastly simplified method for defining shallow, nested resource routes in Rails applications when modules and namespaces are involved. We do this by introducing a `model` method to the Rails routing DSL, which serves as an interchangable substitute for the `resources` method.
 
 ## Why?
 As Rails applications grow and developers start reaching for tools like modules and namespaces to organize their domain model, it can be incredibly challenging to generate sensible routes and URLs using the traditional Rails routing DSL. 
@@ -89,7 +89,7 @@ end
 
 ## Interoperability
 
-The can use `model` the same way you would `resources`, like so:
+The can use the `model` method the same way you would the `resources` method, like so:
 
 ```ruby
 namespace :account do 
