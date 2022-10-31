@@ -34,7 +34,7 @@ model "Project" do
 end
 ```
 
-## Other Before and After Examples
+## Other Examples
 
 ### `Projects::Deliverable` and `Objective` Nested Under It
 
