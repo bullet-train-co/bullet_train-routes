@@ -137,6 +137,28 @@ edit_project_projects_deliverable GET    /projects/:project_id/projects/delivera
         end
       end
     end
+
+    assert_formatted_routes <<~ROUTES
+  search_account_sites GET    /account/sites/search(.:format)                  account/sites#search
+  publish_account_site POST   /account/sites/:id/publish(.:format)             account/sites#publish
+    account_site_pages GET    /account/sites/:site_id/pages(.:format)          account/pages#index
+                       POST   /account/sites/:site_id/pages(.:format)          account/pages#create
+ new_account_site_page GET    /account/sites/:site_id/pages/new(.:format)      account/pages#new
+edit_account_site_page GET    /account/sites/:site_id/pages/:id/edit(.:format) account/pages#edit
+     account_site_page GET    /account/sites/:site_id/pages/:id(.:format)      account/pages#show
+                       PATCH  /account/sites/:site_id/pages/:id(.:format)      account/pages#update
+                       PUT    /account/sites/:site_id/pages/:id(.:format)      account/pages#update
+                       DELETE /account/sites/:site_id/pages/:id(.:format)      account/pages#destroy
+ account_site_sortable GET    /account/sites/:site_id/sortable(.:format)       account/sortable#index
+         account_sites GET    /account/sites(.:format)                         account/sites#index
+                       POST   /account/sites(.:format)                         account/sites#create
+      new_account_site GET    /account/sites/new(.:format)                     account/sites#new
+     edit_account_site GET    /account/sites/:id/edit(.:format)                account/sites#edit
+          account_site GET    /account/sites/:id(.:format)                     account/sites#show
+                       PATCH  /account/sites/:id(.:format)                     account/sites#update
+                       PUT    /account/sites/:id(.:format)                     account/sites#update
+                       DELETE /account/sites/:id(.:format)                     account/sites#destroy
+    ROUTES
   end
 
   private
