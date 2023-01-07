@@ -1,4 +1,5 @@
 require "test_helper"
+require "active_support/core_ext/enumerable"
 
 class BulletTrain::RoutesTest < ActionDispatch::IntegrationTest
   setup do
@@ -88,7 +89,30 @@ edit_project_projects_deliverable GET    /projects/:project_id/projects/delivera
     routes = ActionDispatch::Routing::RouteSet.new
     routes.draw(&block)
 
-    assert_equal formatted_routes, formatted_routes(routes)
+    expected, actual = formatted_routes(routes), formatted_routes
+
+    expected_lines = expected.split("\n").index_by(&:squish)
+    actual_lines = actual.split("\n").index_by(&:squish)
+
+    missing_from_expected = expected_lines.keys - actual_lines.keys
+    missing_from_actual   = actual_lines.keys - expected_lines.keys
+
+    if missing_from_expected.none? && missing_from_actual.none?
+      pass
+    else
+      flunk <<~EOM
+        Expected routes to be equal, but found these differences.
+
+        These are the expected routes:
+          #{expected_lines.values_at(*missing_from_expected).join("\n")}
+
+        These were the actual routes:
+          #{actual_lines.values_at(*missing_from_actual).join("\n")}
+
+        The full expected route set is:
+        #{expected}
+      EOM
+    end
   end
 
   def assert_formatted_routes(string)
