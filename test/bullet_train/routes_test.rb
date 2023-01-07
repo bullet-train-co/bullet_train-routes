@@ -68,7 +68,7 @@ edit_project_projects_deliverable GET    /projects/:project_id/projects/delivera
                                   DELETE /projects/:id(.:format)                                        projects#destroy
     ROUTES
 
-    assert_equal_routing do
+    assert_routing_equal_to do
       collection_actions = [:index, :new, :create]
 
       resources :projects do
@@ -85,7 +85,7 @@ edit_project_projects_deliverable GET    /projects/:project_id/projects/delivera
 
   private
 
-  def assert_equal_routing(&block)
+  def assert_routing_equal_to(&block)
     routes = ActionDispatch::Routing::RouteSet.new
     routes.draw(&block)
 
