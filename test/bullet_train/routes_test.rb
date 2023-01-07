@@ -7,8 +7,8 @@ class BulletTrain::RoutesTest < ActionDispatch::IntegrationTest
     @mapper = @routes.draw { break self }
   end
 
-  delegate :namespace, :scope, :resources, :resource, :model, to: :@mapper
-  # delegate_missing_to :@mapper
+  delegate :draw,  to: :@routes
+  delegate :model, to: :@mapper
 
   test "it has a version number" do
     assert BulletTrain::Routes::VERSION
@@ -79,6 +79,62 @@ edit_project_projects_deliverable GET    /projects/:project_id/projects/delivera
 
       namespace :projects do
         resources :deliverables, except: collection_actions
+      end
+    end
+  end
+
+  test "nesting within namespace" do
+    model "Projects::Deliverable" do
+      model "Objective"
+    end
+
+    assert_routing_equal_to do
+      namespace :projects do
+        resources :deliverables
+      end
+
+      resources :projects_deliverables, path: 'projects/deliverables' do
+        resources :objectives
+      end
+    end
+  end
+
+  test "nesting resources across namespacing" do
+    model "Orders::Fulfillment" do
+      model "Shipping::Package"
+    end
+
+    assert_routing_equal_to do
+      namespace :orders do
+        resources :fulfillments
+      end
+
+      resources :orders_fulfillments, path: 'orders/fulfillments' do
+        namespace :shipping do
+          resources :packages
+        end
+      end
+    end
+  end
+
+  test "interoperability" do
+    draw do
+      concern :sortable do
+        get "/sortable", to: "sortable#index"
+      end
+
+      namespace :account do
+        model "Site", concerns: [:sortable] do
+          collection do
+            get :search
+          end
+
+          member do
+            post :publish
+          end
+
+          resources :pages
+        end
       end
     end
   end
