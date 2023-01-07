@@ -160,10 +160,10 @@ edit_project_projects_deliverable GET    /projects/:project_id/projects/delivera
         Expected routes to be equal, but found these differences.
 
         These are the expected routes:
-          #{expected_lines.values_at(*missing_from_expected).join("\n")}
+        #{expected_lines.values_at(*missing_from_expected).join("\n")}
 
         These were the actual routes:
-          #{actual_lines.values_at(*missing_from_actual).join("\n")}
+        #{actual_lines.values_at(*missing_from_actual).join("\n")}
 
         The full expected route set is:
         #{expected}
