@@ -126,34 +126,6 @@ namespace :account do
 end
 ```
 
-## What `model` Draws
-
-Two rules cover every example above:
-
-1. **A model with no `model` parent is drawn at its canonical location.** Its module path becomes namespaces, so `model "Projects::Deliverable"` draws exactly what `namespace :projects { resources :deliverables }` draws.
-2. **A model nested inside another `model` is drawn shallowly under its parent.** Its collection actions (`index`, `new`, `create`) nest under the parent, and its member actions (`show`, `edit`, `update`, `destroy`) stay at the child's own canonical location.
-
-Namespaces the parent's path already spells out aren't repeated in the nested path, which is what turns `Project` + `Projects::Deliverable` into `/projects/1/deliverables` rather than `/projects/1/projects/deliverables`.
-
-| Declaration | Collection | Member |
-| --- | --- | --- |
-| `model "Project"` | `/projects` | `/projects/:id` |
-| `model "Projects::Deliverable"` | `/projects/deliverables` | `/projects/deliverables/:id` |
-| `Project` › `Projects::Deliverable` | `/projects/:project_id/deliverables` | `/projects/deliverables/:id` |
-| `Projects::Deliverable` › `Objective` | `/projects/deliverables/:projects_deliverable_id/objectives` | `/objectives/:id` |
-| `Hosting::Site` › `Hosting::Page` | `/hosting/sites/:site_id/pages` | `/hosting/pages/:id` |
-| `Orders::Fulfillment` › `Shipping::Package` | `/orders/fulfillments/:orders_fulfillment_id/shipping/packages` | `/shipping/packages/:id` |
-
-The splitting is done with Rails' own `shallow:`, `shallow_path:` and `shallow_prefix:`, so your block is evaluated once and every `resources` option behaves the way it does everywhere else.
-
-## Notes
-
- - `model` accepts a class name (`"Projects::Deliverable"`), a symbol (`:deliverable`), or the model class itself.
- - A plain `resources` nested inside a nested `model` inherits `shallow: true`, just as it would inside hand-written shallow resources. Pass `shallow: false` if you want it fully nested.
- - A `model` written inside a further block — a `namespace`, `scope`, or `resources` within another model's block — is drawn right there, with that scope applied, instead of being hoisted out as a shallow child. If you want a child's member routes to stay shallow, put the namespace in its name: `model "Extra::Deliverable"`, not `namespace :extra { model "Deliverable" }`.
- - A surrounding `namespace` composes with the model's own namespace, so `namespace :account { model "Account::Site" }` routes to `/account/account/sites`. Name the model `"Site"` inside the namespace, or drop the namespace block.
- - Rails route precedence still applies between declarations. `model "Project"` followed by `model "Projects::Deliverable"` puts `/projects/:id` ahead of `/projects/deliverables`, so declare the deeper model first if you need its collection URL to win.
-
 ## Installation
 Add this line to your application's Gemfile:
 
