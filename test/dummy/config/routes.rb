@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # Exercises the DSL while the app boots, so the test suite fails loudly if `model` isn't
+  # available by the time routes are drawn.
+  model "Project" do
+    model "Projects::Deliverable" do
+      model "Objective"
+    end
+  end
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  namespace :account do
+    model "Form" do
+      model "Forms::FieldSet"
+    end
+  end
 end

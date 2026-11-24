@@ -1,12 +1,24 @@
 require "bullet_train/routes/version"
-require "bullet_train/routes/railtie"
 require "bullet_train/routes/mapper_extensions"
 
 module BulletTrain
   module Routes
+    # Makes `model` available in the routing DSL. Safe to call more than once.
+    def self.install
+      return false unless defined?(ActionDispatch::Routing::Mapper)
+      return false if ActionDispatch::Routing::Mapper.include?(MapperExtensions)
+
+      ActionDispatch::Routing::Mapper.include(MapperExtensions)
+      true
+    end
   end
 end
 
-ActiveSupport.on_load(:action_controller) do 
-  ActionDispatch::Routing::Mapper.include(BulletTrain::Routes::MapperExtensions)
+# In a Rails app the railtie installs the DSL from an initializer, which always runs before
+# `config/routes.rb` is evaluated. Outside Rails (or if Action Pack is already loaded by the
+# time this file is required) install it right away.
+if defined?(Rails::Railtie)
+  require "bullet_train/routes/railtie"
+else
+  BulletTrain::Routes.install
 end
